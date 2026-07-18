@@ -15,7 +15,7 @@ export const getSignedUploadUrl = async (fileName) => {
 
 export const uploadVideoToSupabase = async (
   signedUrl,
-  videoFile
+  videoFile,setUploadProgress
 ) => {
   const response = await axios.put(
     signedUrl,
@@ -24,6 +24,11 @@ export const uploadVideoToSupabase = async (
       headers: {
         "Content-Type": videoFile.type,
       },
+
+      onUploadProgress : (progressEvent) => {
+        const uploadProgressInPercentage = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        setUploadProgress(uploadProgressInPercentage)
+      }
     }
   );
 
