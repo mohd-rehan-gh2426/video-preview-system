@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: #0b1120;
+  color: #f9fafb;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  display: block;      /* kill the default flex centering */
+  max-width: none;     /* kill the 1280px cap */
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}

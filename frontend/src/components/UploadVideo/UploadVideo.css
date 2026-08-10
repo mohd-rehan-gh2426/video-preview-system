@@ -1,0 +1,120 @@
+.upload-card {
+  width: 100%;
+  max-width: 560px;
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(14px);
+}
+
+.upload-title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #f9fafb;
+}
+
+.upload-subtitle {
+  margin: 6px 0 24px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+/* Dropzone-style file input */
+.upload-drop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-align: center;
+  padding: 34px 20px;
+  border: 1.5px dashed rgba(148, 163, 184, 0.45);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.upload-drop:hover {
+  border-color: #60a5fa;
+  background: rgba(96, 165, 250, 0.07);
+}
+
+.upload-drop input { display: none; }
+
+.upload-drop-icon { font-size: 1.9rem; }
+.upload-drop-main { font-weight: 600; color: #e5e7eb; }
+.upload-drop-hint { font-size: 0.8rem; color: #94a3b8; }
+
+/* File meta */
+.upload-meta {
+  margin-top: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 14px 16px;
+  display: grid;
+  gap: 8px;
+}
+
+.upload-meta p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+}
+
+/* Button */
+.upload-btn {
+  margin-top: 22px;
+  width: 100%;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(90deg, #2563eb, #7c3aed);
+  box-shadow: 0 10px 24px -10px rgba(37, 99, 235, 0.9);
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.upload-btn:hover:not(:disabled) { transform: translateY(-1px); }
+
+.upload-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Progress */
+.upload-progress { margin-top: 20px; }
+
+.upload-progress-track {
+  width: 100%;
+  height: 10px;
+  background-color: rgba(148, 163, 184, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.upload-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+  transition: width 0.2s ease;
+}
+
+.upload-progress-label {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  text-align: right;
+}

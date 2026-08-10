@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { getSignedUploadUrl, uploadVideoToSupabase } from "../../api/video.api";
+import "./UploadVideo.css";
+import { toast } from "sonner";
 
 const UploadVideo = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
@@ -32,9 +34,13 @@ const UploadVideo = () => {
         selectedVideo,
         setUploadProgress,
       );
+      toast.success("Video has been uploaded successfully");
+      setSelectedVideo(null);
+      setUploadProgress(0);
 
       console.log("Upload completed successfully");
     } catch (error) {
+      toast.error(error?.message || "Upload failed. Please try again.");
       console.log(error);
     } finally {
       setIsUploading(false);
@@ -42,44 +48,61 @@ const UploadVideo = () => {
   };
 
   return (
-    <div>
-      <input type="file" accept="video/*" onChange={handleChange} />
+    <div className="upload-card">
+      <h1 className="upload-title">Upload a video</h1>
+      <p className="upload-subtitle">
+        Pick a file and we'll stream it straight to secure storage.
+      </p>
+
+      <label className="upload-drop">
+        <span className="upload-drop-icon">📁</span>
+        <span className="upload-drop-main">
+          {selectedVideo
+            ? "Choose a different video"
+            : "Click to select a video"}
+        </span>
+        <span className="upload-drop-hint">
+          MP4, MOV, WebM — any video format
+        </span>
+        <input type="file" accept="video/*" onChange={handleChange} />
+      </label>
+
       {selectedVideo && (
-        <div>
-          <p>Selected File Name : {selectedVideo.name}</p>
-          <p>Selected File Type : {selectedVideo.type}</p>
+        <div className="upload-meta">
           <p>
-            Selected File Size :{" "}
-            {(selectedVideo.size / (1024 * 1024)).toFixed(2)} MB
+            <span>File name</span> <strong>{selectedVideo.name}</strong>
+          </p>
+          <p>
+            <span>File type</span> <strong>{selectedVideo.type}</strong>
+          </p>
+          <p>
+            <span>File size</span>{" "}
+            <strong>
+              {(selectedVideo.size / (1024 * 1024)).toFixed(2)} MB
+            </strong>
           </p>
         </div>
       )}
-      <button onClick={handleClick} disabled={isUploading || !selectedVideo}>
+
+      <button
+        className="upload-btn"
+        onClick={handleClick}
+        disabled={isUploading || !selectedVideo}
+      >
         {isUploading ? "Uploading..." : "Upload"}
       </button>
-      {/* {isUploading && <p>Uploading: {uploadProgress}%</p>} */}
+
       {isUploading && (
-        <div style={{ marginTop: "16px", width: "400px" }}>
-          <div
-            style={{
-              width: "100%",
-              height: "10px",
-              backgroundColor: "#e5e7eb",
-              borderRadius: "999px",
-              overflow: "hidden",
-            }}
-          >
+        <div className="upload-progress">
+          <div className="upload-progress-track">
             <div
-              style={{
-                width: `${uploadProgress}%`,
-                height: "100%",
-                backgroundColor: "#2563eb",
-                transition: "width 0.2s ease",
-              }}
+              className="upload-progress-bar"
+              style={{ width: `${uploadProgress}%` }}
             />
           </div>
-
-          <p style={{ marginTop: "8px" }}>Uploading... {uploadProgress}%</p>
+          <p className="upload-progress-label">
+            Uploading... {uploadProgress}%
+          </p>
         </div>
       )}
     </div>
