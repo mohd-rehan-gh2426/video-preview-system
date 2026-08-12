@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { getSignedUploadUrl, uploadVideoToSupabase } from "../../api/video.api";
+import {
+  getSignedUploadUrl,
+  uploadVideoToSupabase,
+  completeVideoUpload,
+} from "../../api/video.api";
 import "./UploadVideo.css";
 import { toast } from "sonner";
 
@@ -35,6 +39,13 @@ const UploadVideo = () => {
         setUploadProgress,
       );
       toast.success("Video has been uploaded successfully");
+
+      // Step 3: Tell backend the upload completed
+      await completeVideoUpload(
+        uploadData.videoId,
+        selectedVideo.type,
+        selectedVideo.size,
+      );
       setSelectedVideo(null);
       setUploadProgress(0);
 

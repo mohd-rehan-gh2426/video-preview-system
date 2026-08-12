@@ -1,0 +1,200 @@
+/* VideoLibrary.css
+ * YouTube-inspired dark video grid — pure CSS, no frameworks.
+ */
+
+:root {
+  --vl-bg-page: #0f0f0f;
+  --vl-bg-card: #1a1a1a;
+  --vl-bg-card-hover: #222222;
+  --vl-bg-button: #3f3f3f;
+  --vl-bg-button-hover: #555555;
+  --vl-bg-thumbnail: linear-gradient(135deg, #272727 0%, #1a1a1a 100%);
+
+  --vl-text-primary: #f1f1f1;
+  --vl-text-secondary: #aaaaaa;
+  --vl-text-muted: #888888;
+  --vl-text-placeholder: #888888;
+
+  --vl-radius-card: 12px;
+  --vl-radius-button: 8px;
+  --vl-radius-thumb: 10px;
+
+  --vl-shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --vl-transition-fast: 0.15s ease;
+  --vl-transition-base: 0.2s ease;
+  --vl-transition-slow: 0.3s ease;
+
+  --vl-gap: 1.5rem;
+}
+
+/* Container */
+.video-library {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* Heading */
+.video-library h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--vl-text-primary);
+  margin: 0 0 1.5rem 0;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+  .video-library h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+/* Loading / empty messages */
+.video-library > p {
+  color: var(--vl-text-secondary);
+  font-size: 1rem;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin: 0;
+}
+
+/* Responsive grid */
+.video-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--vl-gap);
+}
+
+@media (min-width: 640px) {
+  .video-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .video-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .video-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Card */
+.video-card {
+  background-color: var(--vl-bg-card);
+  border-radius: var(--vl-radius-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--vl-transition-base),
+    background-color var(--vl-transition-base),
+    box-shadow var(--vl-transition-base);
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  background-color: var(--vl-bg-card-hover);
+  box-shadow: var(--vl-shadow-hover);
+}
+
+.video-card:focus-within {
+  outline: 2px solid var(--vl-text-primary);
+  outline-offset: 2px;
+}
+
+/* Thumbnail placeholder */
+.video-card::before {
+  content: "Thumbnail coming soon";
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  background: var(--vl-bg-thumbnail);
+  color: var(--vl-text-placeholder);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 0 1rem;
+  border-radius: var(--vl-radius-thumb);
+  margin: 0.5rem;
+  transition: transform var(--vl-transition-slow);
+}
+
+.video-card:hover::before {
+  transform: scale(1.03);
+}
+
+/* Title */
+.video-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--vl-text-primary);
+  margin: 0.75rem 1rem 0.5rem;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+/* Meta paragraphs */
+.video-card p {
+  margin: 0;
+  color: var(--vl-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.video-card p:nth-of-type(1) {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--vl-text-muted);
+  margin: 0 1rem 0.25rem;
+}
+
+.video-card p:nth-of-type(2) {
+  margin: 0 1rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.video-card p:nth-of-type(2)::before {
+  content: "•";
+  color: var(--vl-text-muted);
+}
+
+/* Play button */
+.video-card button {
+  width: calc(100% - 2rem);
+  margin: auto 1rem 1rem;
+  padding: 0.625rem 1rem;
+  background-color: var(--vl-bg-button);
+  color: var(--vl-text-primary);
+  border: none;
+  border-radius: var(--vl-radius-button);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--vl-transition-base),
+    transform var(--vl-transition-fast);
+}
+
+.video-card button:hover {
+  background-color: var(--vl-bg-button-hover);
+}
+
+.video-card button:focus-visible {
+  outline: 2px solid var(--vl-text-primary);
+  outline-offset: 2px;
+}
+
+.video-card button:active {
+  transform: scale(0.98);
+}

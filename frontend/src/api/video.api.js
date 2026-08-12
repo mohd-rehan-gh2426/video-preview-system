@@ -34,3 +34,33 @@ export const uploadVideoToSupabase = async (
 
   return response.data;
 };
+
+export const completeVideoUpload = async (
+  videoId,
+  mimeType,
+  fileSize
+) => {
+  const response = await axios.post(
+    `${BACKEND_URL}/video/${videoId}/complete`,
+    {
+      mimeType,
+      fileSize,
+    }
+  );
+
+  return response.data;
+};
+
+export const getUploadedVideos = async () => {
+  const response = await axios.get(`${BACKEND_URL}/video`);
+
+  return response.data;
+};
+
+export const getVideoById = async (videoId) => {
+  const response = await axios.get(
+    `${BACKEND_URL}/video/${videoId}`
+  );
+
+  return response.data;
+};

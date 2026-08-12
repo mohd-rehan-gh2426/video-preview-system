@@ -1,0 +1,10 @@
+.watch-page {
+  min-height: calc(100vh - 64px);
+  padding: 32px 24px;
+}
+
+.watch-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}

@@ -1,0 +1,22 @@
+/* Videos.css
+ * Page-level layout for the video library screen.
+ */
+
+.videos-page {
+  min-height: 100vh;
+  background-color: #0f0f0f;
+  color: #f1f1f1;
+  padding: 1.5rem 1rem;
+}
+
+@media (min-width: 640px) {
+  .videos-page {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .videos-page {
+    padding: 2.5rem 2rem;
+  }
+}
